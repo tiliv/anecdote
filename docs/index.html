@@ -4,7 +4,7 @@ layout: null
 <!doctype html>
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-{% include crypto.b64 %}'; style-src 'self'; img-src 'self' data:; connect-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-{% if site.qr %}{% include crypto.qr.b64 %}{% else %}{% include crypto.b64 %}{% endif %}'; style-src 'self'; img-src 'self' data:; connect-src {% if site.qr %}{{ site.url }}{% else %}'self'{% endif %}; font-src 'self'; base-uri 'none'; form-action 'none'">
 <title>Anecdote</title>
-<script>{% include crypto.min.js %}</script>
+<script>{% if site.qr %}{% include crypto.qr.min.js %}{% else %}{% include crypto.min.js %}{% endif %}</script>
 </head>

@@ -1,5 +1,6 @@
 /local
 docs/_site
+docs/_site_qr
 node_modules
 package-lock.json
 Gemfile.lock

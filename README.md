@@ -10,6 +10,7 @@ CI/CD is very basic and expects committed files to follow these rules for now:
 
 1. `docs/_data/crypto.js` changes are followed by `$ bin/minify-crypto.sh`
 2. `docs/.well-known/manifest.json` changes are followed by `$ bin/sign-manifest.js`
+3. `docs/index.html` changes are followed by `$ bin/build-local.sh`
 
 Side effect file changes should be committed, because the build pipeline is not concerning itself with these steps.
 
