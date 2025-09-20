@@ -33,9 +33,8 @@
     ) ? manifestText : "Verification failure");
   }
 
-  try{
+  // on ready, we'll set the textContent
+  document.addEventListener('DOMContentLoaded', async ()=>{
     document.body.textContent = await verifyManifest();
-  }catch(err){
-    return null;
-  }
+  });
 })();
