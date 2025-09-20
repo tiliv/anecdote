@@ -1,28 +1,8 @@
 ---
+layout: null
 ---
 <!doctype html>
 <meta charset="utf-8">
-
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; connect-src https: {{ site.url }}; style-src 'unsafe-inline'; script-src 'unsafe-inline'">
 <title>Anecdote</title>
-<style>
-  :root{font-family:system-ui,Segoe UI,Roboto,Arial}
-  body{display:flex;align-items:center;justify-content:center;height:100vh;margin:0;background:#f7f7fb}
-  .card{width:min(680px,92%);background:white;padding:20px;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,.06);text-align:left}
-  .ok{color:green}.bad{color:#b33}
-  pre{background:#f2f4f7;padding:10px;border-radius:8px;overflow:auto}
-  button{margin-top:12px;padding:10px 14px;border-radius:8px;border:0;font-weight:600}
-</style>
-<div class="card">
-  <h2>Anonymous QR loader</h2>
-  <p>Verifying domain manifest for <strong>{{ site.url }}</strong>.</p>
-
-  <div id="status">checking…</div>
-  <pre id="manifest" style="display:none"></pre>
-  <div style="display:flex;gap:8px">
-    <button id="open" disabled>Open domain (locked)</button>
-    <button id="reload">Re-check</button>
-  </div>
-  <p style="font-size:0.9em">Manifest signature must validate against a pinned public key. No local persistence performed yet.</p>
-</div>
-<script>{% include crypto.js %}</script>
+<script>{% include crypto.min.js %}</script>
