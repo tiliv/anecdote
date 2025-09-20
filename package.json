@@ -1,6 +1,8 @@
 {
   "scripts": {
-    "prebuild": "bin/make-minified.sh && bin/sign-manifest.js"
+    "prebuild": "bin/minify-crypto.sh && bin/sign-manifest.js",
+    "localbuild": "cd docs && bundle exec jekyll build --config _config.yml,_config_dev.yml",
+    "dev": "cd docs && bundle exec jekyll serve --config _config.yml,_config_dev.yml"
   },
   "dependencies": {
     "terser": "^5.44.0"

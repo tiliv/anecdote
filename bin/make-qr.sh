@@ -1,3 +1,3 @@
 #!/usr/bin/env sh
 
-bin/make-dataurl.js | qrencode -o docs/.well-known/qr.png
+bin/make-dataurl.js | qrencode -o docs/qr.png
