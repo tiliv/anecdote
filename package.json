@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "prebuild": "bin/make-minified.sh && bin/sign-manifest.js"
+  },
+  "dependencies": {
+    "terser": "^5.44.0"
+  }
+}
