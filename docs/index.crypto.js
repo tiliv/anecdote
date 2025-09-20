@@ -11,16 +11,16 @@
   const MANIFEST_URL = DOMAIN + '/.well-known/manifest.json';
   const SIG_URL = DOMAIN + '/.well-known/manifest.sig';
 
-  function pemToArrayBuffer(pem){
-    const bin = atob(pem);
+  function pemToArrayBuffer(b64){
+    const bin = atob(b64);
     const len = bin.length;
     const buf = new Uint8Array(len);
     for(let i=0;i<len;i++) buf[i]=bin.charCodeAt(i);
     return buf.buffer;
   }
 
-  async function importPubKey(pem){
-    const spki = pemToArrayBuffer(pem);
+  async function importPubKey(b64){
+    const spki = pemToArrayBuffer(b64);
     return crypto.subtle.importKey(
       'spki', spki,
       { name: "ECDSA", namedCurve: "P-256" },
@@ -69,6 +69,7 @@
       STATUS.innerHTML = '<span class="bad">Error verifying manifest: '+String(err)+'</span>';
       OPEN.disabled = true;
       MAN.style.display = 'none';
+      throw err;
       return false;
     }
   }
