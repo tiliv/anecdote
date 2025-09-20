@@ -1,5 +1,3 @@
-host: anecdote.discoverywritten.com
-port: 4000
 url: "https://anecdote.discoverywritten.com"
 destination: _site_qr
 qr: true
