@@ -9,8 +9,8 @@
 
   async function verifyManifest(){
     const [manifestText, sigB64] = await Promise.all([
-      fetchTextNoCache('/.well-known/manifest.json'),
-      fetchTextNoCache('/.well-known/manifest.sig')
+      fetchTextNoCache('https://anecdote.discoverywritten.com/.well-known/manifest.json'),
+      fetchTextNoCache('https://anecdote.discoverywritten.com/.well-known/manifest.sig')
     ]);
     const encoder = new TextEncoder();
     const manifestBytes = encoder.encode(manifestText);
