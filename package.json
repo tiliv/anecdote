@@ -1,7 +1,7 @@
 {
   "scripts": {
     "prebuild": "bin/minify-crypto.sh && bin/sign-manifest.js",
-    "localbuild": "cd docs && bundle exec jekyll build --config _config.yml,_config_dev.yml",
+    "localbuild": "bin/build-local.sh",
     "dev": "cd docs && bundle exec jekyll serve --config _config.yml,_config_dev.yml"
   },
   "dependencies": {
