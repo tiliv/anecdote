@@ -23,7 +23,7 @@
     const spki = pemToArrayBuffer(b64);
     return crypto.subtle.importKey(
       'spki', spki,
-      { name: "ECDSA", namedCurve: "P-256" },
+      { name: 'RSA-PSS', hash: {name:'SHA-256'} },
       false, ['verify']
     );
   }
@@ -69,7 +69,6 @@
       STATUS.innerHTML = '<span class="bad">Error verifying manifest: '+String(err)+'</span>';
       OPEN.disabled = true;
       MAN.style.display = 'none';
-      throw err;
       return false;
     }
   }
