@@ -1,13 +1,14 @@
 (async function(){
-  const PUBLIC_KEY = "{% include public.b64 %}";
-
   const _fetch = url => fetch(url, {
     cache:'no-store', credentials: 'omit', mode: 'cors'
   });
 
   document.addEventListener('DOMContentLoaded', async () => {
-    const raw = await _fetch('{{ site.url }}/.well-known/manifest.json');
-    manifest(JSON.parse(document.body.textContent = await raw.text()));
+    const res = await _fetch('{{ site.url }}/.well-known/manifest.json');
+    manifest(JSON.parse(
+      document.getElementById('manifest')
+      .textContent = document.body.textContent = await res.text()
+    ));
   });
 
   function manifest({ candidates, candidate_order, resources, resource_order }) {
