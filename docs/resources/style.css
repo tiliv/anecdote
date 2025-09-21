@@ -13,7 +13,7 @@
   --stroke: #282524;
   --shade-hard: #232224f2;
   --shade: #23222440;
-  --border: #00000040;
+  --border: #00000080;
 }
 html {
   width: 100vw;
@@ -42,16 +42,26 @@ html::before {
 body {
   display: flex;
   flex-direction: column;
-  max-width: 80vw;
-  height: max-content;
-  padding: 0;
+  width: max-content;
+  padding: 1rem;
   margin: auto;
-  color: var(--fg2);
-/* }
-code { */
+  /* color: var(--fg2); */
+  /* }
+  code { */
   white-space: pre;
+  font-weight: bolder;
   font-size: 2em;
   font-family: "Courier New", Courier, monospace;
-  background: var(--shade-hard);
-  color: var(--fg1);
+  color: var(--fg2);
+  mix-blend-mode: overlay;
+  text-shadow: 0 .15rem 0 var(--sh);
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 1rem;
+  background-color: var(--shade);
+  box-shadow: 0 0 .5rem var(--border);
+  z-index: -1;
+  pointer-events: none;
 }
