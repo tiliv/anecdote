@@ -1,4 +1,7 @@
 ---
 layout: null
 ---
-<!doctype html><head><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' blob: {% if site.qr -%}{{ site.url }}{%- else -%}'self'{%- endif %}; script-src 'self' blob: 'sha256-{% if site.qr %}{% include payload.qr.b64 %}{% else %}{% include payload.b64 %}{% endif %}'; style-src 'self' blob:; worker-src 'self'; img-src 'self'; media-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none';"><title>Anecdote</title><script>{% if site.qr %}{% include payload.qr.min.js %}{% else %}{% include payload.min.js %}{% endif %}</script></head>
+{%- capture integrity -%}
+{%- if site.qr %}{% include payload.qr.b64 %}{% else %}{% include payload.b64 %}{% endif -%}
+{%- endcapture -%}
+<!doctype html><head><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' blob: {% if site.qr -%}{{ site.url }}{%- endif %}; script-src 'self' blob: 'sha256-{{ integrity }}'; style-src 'self' blob:; worker-src 'self'; img-src 'self'; media-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none';"><title>Anecdote</title><script>{% if site.qr %}{% include payload.qr.min.js %}{% else %}{% include payload.min.js %}{% endif %}</script></head>
