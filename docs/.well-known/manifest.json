@@ -1,6 +1,6 @@
 ---
 ---
-{% capture node %}{%- if site.port -%}
+{% capture node %}{%- if site.dev -%}
 http://{{ site.host }}:{{ site.port }}
 {%- else -%}
 {{ site.url }}
