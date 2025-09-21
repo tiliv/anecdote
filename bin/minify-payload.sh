@@ -1,18 +1,19 @@
 #!/usr/bin/env sh
 
+IN=docs/_data/payload.js
 PEM=docs/_includes/public.b64
 if [ "$1" = "--qr" ]; then
-  TARGET=docs/_includes/crypto.qr.min.js
-  BASE64=docs/_includes/crypto.qr.b64
+  TARGET=docs/_includes/payload.qr.min.js
+  BASE64=docs/_includes/payload.qr.b64
   URL="https://anecdote\.discoverywritten\.com"
 else
-  TARGET=docs/_includes/crypto.min.js
-  BASE64=docs/_includes/crypto.b64
+  TARGET=docs/_includes/payload.min.js
+  BASE64=docs/_includes/payload.b64
   URL=""
 fi
 
 # Minify
-npx terser docs/_data/crypto.js -c passes=3,drop_console,unsafe_arrows,booleans_as_integers \
+npx terser "$IN" -c passes=3,drop_console,unsafe_arrows,booleans_as_integers \
   -m toplevel --toplevel --format wrap_iife,ecma=2020 \
   -o "$TARGET"
 

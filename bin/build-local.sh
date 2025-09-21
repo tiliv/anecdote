@@ -1,10 +1,10 @@
-QR_REPR=docs/_includes/qr.b64
+QR_REPR=docs/_includes/index.b64
 QR_OUT=docs/qr.png
 
 function _build {
   echo "Minifying crypto.js for inlining..."
   CONFIG=$1
-  bin/minify-crypto.sh "$2"
+  bin/minify-payload.sh "$2"
 
   cd docs
   echo "Building site $CONFIG ..."

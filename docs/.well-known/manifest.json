@@ -4,19 +4,14 @@
   "version": "1",
   "issuer": "anecdote.discoverywritten.com",
   "issued": "2025-09-16T00:00:00Z",
+  "node": "{{ site.url }}",
   "notes": "Please Stand By.",
+  "candidate_order": ["dns"],
+  "resource_order": ["style.css"],
   "candidates": {
-    "dns": "{{ site.url }}/resources/",
-    "magnet": null,
-    "ipfs": null,
-    "wdyn": null
+    "dns": "http{% unless site.port %}s{% endunless %}://{{ site.host }}:{{ site.port }}/resources/"
   },
   "resources": {
-    "style.css":         { "type": "text/css", "hash": null, "sign": null },
-    "logo.png":          { "type": "image/png", "hash": null, "sign": null },
-    "qr.png":            { "type": "image/png", "hash": null, "sign": null },
-    "service-worker.js": { "type": "application/javascript", "hash": null, "sign": null }
-  },
-  "candidate_order": ["dns"],
-  "resource_order": ["style.css"]
+    "style.css": { "type": "text/css" }
+  }
 }

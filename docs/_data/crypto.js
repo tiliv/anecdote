@@ -32,26 +32,4 @@
       manifestBytes
     ) ? manifestText : "Verification failure");
   }
-
-  // on ready, we'll set the textContent
-  document.addEventListener('DOMContentLoaded', async ()=>{
-    const rawManifest = document.body.textContent = await verifyManifest();
-    try {
-      handle(JSON.parse(rawManifest));
-    } catch(e) {
-      manifest = {};
-    }
-
-    function handle({
-      candidates, candidate_order,
-      resources, resource_order,
-    }) {
-      for (const label of resource_order) {
-        const resource = resources[label];
-        for (const strategy of candidate_order) {
-          const uri = candidates[strategy] + (resource[strategy] ?? label);
-        }
-      }
-    }
-  });
 })();
