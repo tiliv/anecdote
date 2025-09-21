@@ -6,11 +6,12 @@ Please Stand By.
 
 ## Dev
 
-CI/CD is very basic and expects committed files to follow these rules for now:
+CI/CD has no build steps and expects our local build to be committed for now.
 
-1. `docs/_data/crypto.js` changes are followed by `$ bin/minify-crypto.sh`
-2. `docs/.well-known/manifest.json` changes are followed by `$ bin/sign-manifest.js`
-3. `docs/index.html` changes are followed by `$ bin/build-local.sh`
+To see good changes on the dev server:
+
+1. Use `$ bin/build-local.sh` after changes to `docs/index.html`, `docs/_data/payload.js`, `docs/.well-known/manifest.json`. These files represent the foundation and probably shouldn't be changing once they settle.
+2. No full build needed if only changing resources referenced by `docs/.well-known/manifest.json`.
 
 Side effect file changes should be committed, because the build pipeline is not concerning itself with these steps.
 

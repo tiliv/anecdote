@@ -12,7 +12,7 @@
   });
 
   function manifest({ candidates, candidate_order, resources, resource_order }) {
-    async function resource({ strategy, uri, type }){
+    async function resource({ strategy, uri, path, type }){
       async function fill() {
         switch (strategy) {
           case 'dns':
@@ -20,13 +20,16 @@
             return new Blob([await resource.arrayBuffer()], { type });
         }
       }
-      const url = URL.createObjectURL(await fill());
+      const file = new File([await fill()], path, { type });
+      const url = URL.createObjectURL(file);
       switch (type) {
         case 'text/css': css(); break;
       }
       async function css() {
         const link = document.createElement('link');
-        link.rel = 'stylesheet'; link.href = url;
+        link.rel = 'stylesheet';
+        link.href = url;
+        link.id = path;
         document.head.appendChild(link);
       }
     }
@@ -39,6 +42,7 @@
         resource({
           ...resources[label],
           uri: candidates[strategy] + path,
+          path,
           strategy
         });
       }
