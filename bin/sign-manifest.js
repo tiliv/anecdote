@@ -3,8 +3,9 @@
 const fs = require('fs');
 const crypto = require('crypto');
 
-const manifest = fs.readFileSync('docs/.well-known/manifest.json');
-const privPem = fs.readFileSync('local/private.pem');
+const private = process.argv[2] || "local/private.pem";
+const manifest = fs.readFileSync(`docs/_site/.well-known/manifest.json`);
+const privPem = fs.readFileSync(private);
 
 const sign = crypto.createSign('sha256');
 sign.update(manifest);
@@ -15,5 +16,6 @@ const signature = sign.sign({
   saltLength: 32
 });
 
-fs.writeFileSync('docs/.well-known/manifest.sig', signature.toString('base64'));
-console.log('manifest.sig written (base64)');
+const b64 = signature.toString('base64');
+fs.writeFileSync('docs/.well-known/manifest.sig', b64);
+console.log(b64);
