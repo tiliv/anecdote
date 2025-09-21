@@ -29,3 +29,4 @@ sed -i.bak "s@{{ site\.url }}@$URL@g" "$TARGET" && rm "$TARGET.bak"
 # Write
 echo "$(<"$TARGET")"
 openssl dgst -sha256 -binary "$TARGET" | openssl base64 -A > "$BASE64"
+echo "$(<"$BASE64")"
