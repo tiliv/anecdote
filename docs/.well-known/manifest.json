@@ -6,17 +6,17 @@
   "issued": "2025-09-16T00:00:00Z",
   "notes": "Please Stand By.",
   "candidates": {
-    "dns": "{{ site.url }}",
+    "dns": "{{ site.url }}/resources/",
     "magnet": null,
     "ipfs": null,
     "wdyn": null
   },
   "resources": {
-    "/style.css":         { "type": "text/css", "hash": null, "sign": null },
-    "/logo.png":          { "type": "image/png", "hash": null, "sign": null },
-    "/qr.png":            { "type": "image/png", "hash": null, "sign": null },
-    "/service-worker.js": { "type": "application/javascript", "hash": null, "sign": null }
+    "style.css":         { "type": "text/css", "hash": null, "sign": null },
+    "logo.png":          { "type": "image/png", "hash": null, "sign": null },
+    "qr.png":            { "type": "image/png", "hash": null, "sign": null },
+    "service-worker.js": { "type": "application/javascript", "hash": null, "sign": null }
   },
   "candidate_order": ["dns"],
-  "resource_order": ["style.css"],
+  "resource_order": ["style.css"]
 }

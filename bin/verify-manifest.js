@@ -3,7 +3,7 @@
 const fs = require('fs');
 const crypto = require('crypto');
 
-const manifest = fs.readFileSync('docs/.well-known/manifest.json');
+const manifest = fs.readFileSync('docs/_site/.well-known/manifest.json');
 const sig = Buffer.from(fs.readFileSync('docs/.well-known/manifest.sig','utf8').trim(), 'base64');
 const pub = fs.readFileSync('docs/public.pem');
 
