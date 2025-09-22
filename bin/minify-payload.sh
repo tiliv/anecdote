@@ -24,8 +24,8 @@ sed -i.bak "s@{% include public\.b64 %}@$(<"$PEM")@" "$TARGET" && rm "$TARGET.ba
 # We have to replace this because we're not using a file that jekyll has rendered yet.
 # We do this to avoid querying it out of the docs/_site/index.html,
 # but it could be done.
-echo "Replacing {{ site.url }} with manifest provider: ${URL:-<self>}"
-sed -i.bak "s@{{ site\.url }}@$URL@g" "$TARGET" && rm "$TARGET.bak"
+echo "Replacing {{ site.canonical }} with manifest provider: ${URL:-<self>}"
+sed -i.bak "s@{{ site\.canonical }}@$URL@g" "$TARGET" && rm "$TARGET.bak"
 
 # Write
 echo "$(<"$TARGET")"

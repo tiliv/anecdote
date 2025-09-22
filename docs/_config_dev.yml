@@ -1,4 +1,4 @@
 host: 127.0.0.1
 port: 4000
-url: "http://127.0.0.1:4000"
-dev: true
+url: http://127.0.0.1:4000
+canonical: http://127.0.0.1:4000

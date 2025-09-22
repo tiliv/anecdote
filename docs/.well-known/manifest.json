@@ -1,21 +1,16 @@
 ---
 ---
-{% capture node %}{%- if site.dev -%}
-http://{{ site.host }}:{{ site.port }}
-{%- else -%}
-{{ site.url }}
-{%- endif -%}{%- endcapture -%}
 {
   "version": "1",
   "issuer": "anecdote.discoverywritten.com",
   "issued": "2025-09-16T00:00:00Z",
-  "node": "{{ node }}",
+  "node": "{{ site.canonical }}",
   "dev": {{ site.dev | default: false | jsonify }},
   "notes": "Please Stand By.",
   "candidate_order": ["dns"],
   "resource_order": ["style.css"],
   "candidates": {
-    "dns": "{{ node }}/resources/"
+    "dns": "{{ site.canonical }}/resources/"
   },
   "resources": {
     "style.css": { "type": "text/css" }
