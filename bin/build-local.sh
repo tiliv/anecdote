@@ -21,8 +21,8 @@ _build _config_qr.yml --qr
 echo "Signing manifest..."
 bin/sign-manifest.js
 
-echo "Building QR site serialization..."
-bin/make-dataurl.js > $QR_REPR
+echo "Building Aztec..."
+bin/make-permatank.mjs
 
-echo "Encoding QR..."
-qrencode -r $QR_REPR -o $QR_OUT
+echo "Building QR..."
+bin/make-qr.sh
