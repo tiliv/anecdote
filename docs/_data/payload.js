@@ -1,50 +1,54 @@
 (async function(){
-  const _fetch = url => fetch(url, {
-    cache:'no-store', credentials: 'omit', mode: 'cors'
-  });
+  const RESOURCES = {};
+  const _fetch = url => fetch(url, { cache:'no-store', credentials: 'omit', mode: 'cors' });
+  await _manifest('{{ site.canonical }}/.well-known/manifest.json');
 
-  document.addEventListener('DOMContentLoaded', async () => {
-    const res = await _fetch('{{ site.url }}/.well-known/manifest.json');
-    manifest(JSON.parse(
-      document.getElementById('manifest')
-      .textContent = document.body.textContent = await res.text()
-    ));
-  });
-
-  function manifest({ candidates, candidate_order, resources, resource_order }) {
-    async function resource({ strategy, uri, path, type }){
-      async function fill() {
-        switch (strategy) {
-          case 'dns':
-            const resource = await _fetch(uri);
-            return new Blob([await resource.arrayBuffer()], { type });
+  async function _manifest(dns) {
+    const response = await _fetch(dns);
+    const text = await response.text();
+    const obj = JSON.parse(text);
+    await manifest(obj);
+    async function manifest({ candidates, candidate_order, resources, resource_order }) {
+      async function resource({ strategy, uri, path, type }){
+        async function fill() {
+          switch (strategy) {
+            case 'dns':
+              const resource = await _fetch(uri);
+              return new Blob([await resource.arrayBuffer()], { type });
+          }
         }
-      }
-      const file = new File([await fill()], path, { type });
-      const url = URL.createObjectURL(file);
-      switch (type) {
-        case 'text/css': css(); break;
-      }
-      async function css() {
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = url;
-        link.id = path;
-        document.head.appendChild(link);
-      }
-    }
+        const file = new File([await fill()], path, { type });
+        const url = URL.createObjectURL(file);
+        const types = {
+          '*': ['link', 'href'],
+          'application/javascript': ['script', 'src']
+        };
+        const [kind, attr] = types[type] || types['*'];
+        const el = document.createElement(kind);
+        switch (type) {
+          case 'text/css': el.rel = 'stylesheet'; break;
+          // case 'application/manifest+json': _manifest(url); break;
+          default: break;
+        }
 
-    for (const label of resource_order) {
-      if (!resources[label]) continue;
-      for (const strategy of candidate_order) {
-        if (!(strategy in candidates)) continue;
-        const { [strategy]: path=label } = resources[label];
-        resource({
-          ...resources[label],
-          uri: candidates[strategy] + path,
-          path,
-          strategy
-        });
+        el.id = path;
+        el[attr] = url;
+        document.head.appendChild(el);
+        RESOURCES[path] = url;
+      }
+
+      for (const label of resource_order) {
+        if (!resources[label]) continue;
+        for (const strategy of candidate_order) {
+          if (!(strategy in candidates)) continue;
+          const { [strategy]: path=label } = resources[label];
+          await resource({
+            ...resources[label],
+            uri: candidates[strategy] + path,
+            path,
+            strategy
+          });
+        }
       }
     }
   }

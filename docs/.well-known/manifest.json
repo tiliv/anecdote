@@ -8,11 +8,12 @@
   "dev": {{ site.dev | default: false | jsonify }},
   "notes": "Please Stand By.",
   "candidate_order": ["dns"],
-  "resource_order": ["style.css"],
+  "resource_order": ["integrity.js", "style.css"],
   "candidates": {
     "dns": "{{ site.canonical }}/resources/"
   },
   "resources": {
+    "integrity.js": { "type": "application/javascript" },
     "style.css": { "type": "text/css" }
   }
 }

@@ -2,7 +2,7 @@ QR_REPR=docs/_includes/index.b64
 QR_OUT=docs/qr.png
 
 function _build {
-  echo "Minifying crypto.js for inlining..."
+  echo "Minifying integrity.js for inlining..."
   CONFIG=$1
   bin/minify-payload.sh "$2"
 

@@ -1,5 +1,11 @@
+---
+---
 (async function(){
-  const PEM_PUBKEY = "{% include public.b64 %}";
+  console.group("integrity.js");
+
+  const PUBLIC_KEY = document.querySelector('meta[name=public-key-fingerprint]').content.trim();
+
+  console.log({ PUBLIC_KEY });
 
   async function fetchTextNoCache(url){
     const r = await fetch(url, {cache:'no-store', credentials: 'omit', mode: 'cors'});
@@ -8,14 +14,15 @@
   }
 
   async function verifyManifest(){
-    const [manifestText, sigB64] = await Promise.all([
-      fetchTextNoCache('{{ site.url }}/.well-known/manifest.json'),
-      fetchTextNoCache('{{ site.url }}/.well-known/manifest.sig')
+    const [manifestText, signature] = await Promise.all([
+      fetchTextNoCache('{{ site.canonical }}/.well-known/manifest.json'),
+      fetchTextNoCache('{{ site.canonical }}/.well-known/manifest.sig')
     ]);
+    console.log({ signature });
     const encoder = new TextEncoder();
     const manifestBytes = encoder.encode(manifestText);
-    const sigBytes = Uint8Array.from(atob(sigB64.trim()), c => c.charCodeAt(0));
-    const bin = atob(PEM_PUBKEY);
+    const sigBytes = Uint8Array.from(atob(signature.trim()), c => c.charCodeAt(0));
+    const bin = atob(PUBLIC_KEY);
     const len = bin.length;
     const buf = new Uint8Array(len);
     for(let i=0;i<len;i++) buf[i]=bin.charCodeAt(i);
@@ -32,4 +39,9 @@
       manifestBytes
     ) ? manifestText : "Verification failure");
   }
+
+  const manifest = document.body.textContent = await verifyManifest();
+  const MANIFEST = document.getElementById('manifest');
+  MANIFEST.content = manifest;
+  console.groupEnd();
 })();
