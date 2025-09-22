@@ -1,6 +1,6 @@
 (async function(){
   const RESOURCES = {};
-  const _fetch = url => fetch(url, { credentials: 'omit', mode: 'cors' });
+  const _fetch = url => fetch(url, { cache: 'no-store', credentials: 'omit', mode: 'cors' });
   await _manifest('{{ site.canonical }}/.well-known/manifest.json');
 
   async function _manifest(dns) {
