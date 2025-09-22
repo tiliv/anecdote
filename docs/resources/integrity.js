@@ -3,12 +3,11 @@
 (async function(){
   console.group("integrity.js");
 
-  const PUBLIC_KEY = document.querySelector('meta[name=public-key-fingerprint]').content.trim();
-
+  const PUBLIC_KEY = document.querySelector('meta[name=public-key-fingerprint]').content;
   console.log({ PUBLIC_KEY });
 
   async function fetchTextNoCache(url){
-    const r = await fetch(url, {cache:'no-store', credentials: 'omit', mode: 'cors'});
+    const r = await fetch(url, {cache: 'no-store', credentials: 'omit', mode: 'cors'});
     if(!r.ok) throw new Error(r.status);
     return await r.text();
   }
@@ -23,8 +22,9 @@
     const len = bin.length;
     const buf = new Uint8Array(len);
     for(let i=0;i<len;i++) buf[i]=bin.charCodeAt(i);
+    const spki = buf.buffer;
     const pub = await crypto.subtle.importKey(
-      'spki', buf.buffer,
+      'spki', spki,
       { name: 'RSA-PSS', hash: {name:'SHA-256'} },
       false, ['verify']
     );
