@@ -19,29 +19,25 @@
       fetchTextNoCache('{{ site.canonical }}/.well-known/manifest.sig')
     ]);
     console.log({ signature });
-    const encoder = new TextEncoder();
-    const manifestBytes = encoder.encode(manifestText);
-    const sigBytes = Uint8Array.from(atob(signature.trim()), c => c.charCodeAt(0));
     const bin = atob(PUBLIC_KEY);
     const len = bin.length;
     const buf = new Uint8Array(len);
     for(let i=0;i<len;i++) buf[i]=bin.charCodeAt(i);
-    const spki = buf.buffer;
     const pub = await crypto.subtle.importKey(
-      'spki', spki,
+      'spki', buf.buffer,
       { name: 'RSA-PSS', hash: {name:'SHA-256'} },
       false, ['verify']
     );
+
+    const manifestBytes = new TextEncoder().encode(manifestText);
+    const sigBytes = Uint8Array.from(atob(signature.trim()), c => c.charCodeAt(0));
     return (await crypto.subtle.verify(
       {name:'RSA-PSS', saltLength: 32},
-      pub,
-      sigBytes,
-      manifestBytes
+      pub, sigBytes, manifestBytes
     ) ? manifestText : "Verification failure");
   }
 
-  const manifest = document.body.textContent = await verifyManifest();
   const MANIFEST = document.getElementById('manifest');
-  MANIFEST.content = manifest;
+  MANIFEST.content = document.body.textContent = await verifyManifest();
   console.groupEnd();
 })();

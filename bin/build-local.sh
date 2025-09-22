@@ -1,6 +1,3 @@
-QR_REPR=docs/_includes/index.b64
-QR_OUT=docs/qr.png
-
 function _build {
   echo "Minifying integrity.js for inlining..."
   CONFIG=$1
@@ -20,6 +17,9 @@ _build _config_qr.yml --qr
 
 echo "Signing manifest..."
 bin/sign-manifest.js
+
+echo "Encoding index.html..."
+gzip -9 -c docs/_site_qr/index.html > docs/_includes/index.bin
 
 echo "Building Aztec..."
 bin/make-permatank.mjs

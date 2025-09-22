@@ -77,9 +77,9 @@ function makeFrames(id, bin, parts, partSize) {
   return frames;
 }
 
-export async function encodeToAztecSeries(utf8Text) {
-  const raw = Buffer.from(utf8Text, 'utf8');
-  const deflated = Buffer.from(deflateRaw(raw));   // raw DEFLATE (no zlib header)
+export async function encodeToAztecSeries(deflated) {
+  // const raw = Buffer.from(deflated);
+  // const deflated = Buffer.from(deflateRaw(raw));   // raw DEFLATE (no zlib header)
   const id = crypto.randomBytes(8).toString('hex'); // 16-hex char bundle id
 
   // const svgQR = await QRCode.toString(utf8Text, {
@@ -89,24 +89,24 @@ export async function encodeToAztecSeries(utf8Text) {
   // });
   // fss.writeFileSync('docs/qr.svg', svgQR);
 
-  const { partSize, parts } = await splitForAztec(deflated, { maxParts: 32, tryBytes: 1800 });
+  // const { partSize, parts } = await splitForAztec(deflated, { maxParts: 32, tryBytes: 1800 });
 
-  const frames = makeFrames(id, deflated, parts, partSize);
+  // const frames = makeFrames(id, deflated, parts, partSize);
 
-  const files = [];
+  // const files = [];
+  const frames = [deflated]; // Single Aztec for entire deflated blob.
   for (let i = 0; i < frames.length; i++) {
     // If a particular frame fails (too dense), you can lower eclevel or scale and retry.
-    const png = await renderAztec(frames[i], { scale: 4 });
-    const fname = `docs/az${String(i + 1)}.png`;
+    const png = await renderAztec(frames[i], { scale: 3 });
+    const fname = `docs/aztec.png`;
     await fs.writeFile(fname, png);
-    files.push(fname);
+    // files.push(fname);
   }
-  return { id, parts, files, bytesIn: raw.length, bytesDeflated: deflated.length, partSize };
+  return { /* id, parts, files, */ bytesIn: deflated.length/* , bytesDeflated: deflated.length, partSize */ };
 }
 
-const html = fss.readFileSync('docs/_site_qr/index.html', 'utf8');
-const dataUri = 'data:text/html,' + encodeURIComponent(html);
-encodeToAztecSeries(dataUri).then(info => {
+const bin = fss.readFileSync('docs/_includes/index.bin');
+encodeToAztecSeries(bin).then(info => {
   console.log(info);
 }).catch(e => {
   console.error(e);
