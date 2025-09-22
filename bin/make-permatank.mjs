@@ -105,7 +105,7 @@ export async function encodeToAztecSeries(deflated) {
   return { /* id, parts, files, */ bytesIn: deflated.length/* , bytesDeflated: deflated.length, partSize */ };
 }
 
-const bin = fss.readFileSync('docs/_includes/index.bin');
+const bin = fss.readFileSync('docs/_includes/index.qr.bin');
 encodeToAztecSeries(bin).then(info => {
   console.log(info);
 }).catch(e => {

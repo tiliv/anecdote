@@ -19,7 +19,7 @@ echo "Signing manifest..."
 bin/sign-manifest.js
 
 echo "Encoding index.html..."
-gzip -9 -c docs/_site_qr/index.html > docs/_includes/index.bin
+gzip -9 -c docs/_site_qr/index.html > docs/_includes/index.qr.bin
 
 echo "Building Aztec..."
 bin/make-permatank.mjs
