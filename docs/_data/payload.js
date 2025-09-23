@@ -1,7 +1,7 @@
 (async function(){
   // const RESOURCES = {};
   const _fetch = url => fetch(url, { cache: 'no-store', credentials: 'omit', mode: 'cors' });
-  await _manifest('{% if site.qr %}{{ site.canonical }}{% endif %}/.well-known/manifest.json');
+  await _manifest('{{ site.remote }}/.well-known/manifest.json');
 
   async function _manifest(dns) {
     const response = await _fetch(dns);
