@@ -13,7 +13,7 @@ else
 fi
 
 # Minify
-npm exec -- terser "$IN" -c passes=3,drop_console,unsafe_arrows,booleans_as_integers \
+node_modules/.bin/terser "$IN" -c passes=3,drop_console,unsafe_arrows,booleans_as_integers \
   -m toplevel --toplevel --format wrap_iife,ecma=2020 \
   -o "$TARGET"
 
