@@ -98,8 +98,7 @@ export async function encodeToAztecSeries(deflated) {
   for (let i = 0; i < frames.length; i++) {
     // If a particular frame fails (too dense), you can lower eclevel or scale and retry.
     const png = await renderAztec(frames[i], { scale: 3 });
-    const fname = `docs/aztec.png`;
-    await fs.writeFile(fname, png);
+    await fs.writeFile('docs/aztec.png', png);
     // files.push(fname);
   }
   return { /* id, parts, files, */ bytesIn: deflated.length/* , bytesDeflated: deflated.length, partSize */ };
