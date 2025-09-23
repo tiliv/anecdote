@@ -6,12 +6,12 @@ Please Stand By.
 
 ## Dev
 
-To see good changes on the dev server:
+To see good changes on the dev server, you must pre-build some files into the live `docs/` tree:
 
-1. Use `$ bin/build-local.sh` after changes to `docs/index.html`, `docs/_data/payload.js`, `docs/.well-known/manifest.json`. These files represent the foundation and probably shouldn't be changing once they settle.
-2. No full build needed if only changing resources referenced by `docs/.well-known/manifest.json`.
+1. Use `$ npm run localbuild` after changes to `docs/index.html`, `docs/_data/payload.js`, `docs/.well-known/manifest.json`. These files represent the foundation and probably shouldn't be changing once they settle.
+2. No build needed if only changing resources referenced by `docs/.well-known/manifest.json`.
 
-Side effect file changes should be committed, because the build pipeline is not concerning itself with these steps.
+Side effect file changes should be committed for a proper runnable dev server that can pass testing. In CI, the server will build its own without committing, because it will sign files that differ when it produces a hosted version.
 
 ### Commands
 
