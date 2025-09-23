@@ -10,7 +10,16 @@ This repository is being architected to meet several local need layers.
 
 Please Stand By.
 
-![fundamental incognito](./docs/qr.png)
+<table>
+  <tr>
+    <td width="50%" align="center">
+      <img src="docs/qr.png" width="100%"/>
+    </td>
+    <td width="50%" align="center">
+      <img src="docs/aztec.png" width="100%"/>
+    </td>
+  </tr>
+</table>
 
 ## Dev
 
