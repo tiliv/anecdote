@@ -8,7 +8,7 @@ if [ "$1" = "--qr" ]; then
 else
   TARGET=docs/_includes/payload.min.js
   if [ "$1" = "--dev" ]; then
-    URL=""  # relative root, avoids CPS-illegal rewrites from jekyll
+    URL="[[ You shouldn't use the canonical, just start with / ]]"  # this value shouldn't be rendered in this path
   fi
 fi
 

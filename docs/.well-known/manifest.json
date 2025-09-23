@@ -9,7 +9,7 @@
   "candidate_order": ["dns"],
   "resource_order": ["integrity.js", "style.css"],
   "candidates": {
-    "dns": "{{ site.canonical }}/resources/"
+    "dns": "/resources/"
   },
   "resources": {
     "integrity.js": { "type": "application/javascript" },

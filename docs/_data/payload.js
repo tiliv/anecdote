@@ -1,7 +1,7 @@
 (async function(){
-  const RESOURCES = {};
+  // const RESOURCES = {};
   const _fetch = url => fetch(url, { cache: 'no-store', credentials: 'omit', mode: 'cors' });
-  await _manifest('{{ site.canonical }}/.well-known/manifest.json');
+  await _manifest('{% if site.qr %}{{ site.canonical }}{% endif %}/.well-known/manifest.json');
 
   async function _manifest(dns) {
     const response = await _fetch(dns);
@@ -34,7 +34,7 @@
         el.id = path;
         el[attr] = url;
         document.head.appendChild(el);
-        RESOURCES[path] = url;
+        // RESOURCES[path] = url;
       }
 
       for (const label of resource_order) {
