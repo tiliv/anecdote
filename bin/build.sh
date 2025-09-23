@@ -1,17 +1,21 @@
-function _build {
+#!/usr/bin/env bash
+
+set -Eeuo pipefail
+
+_build() {
   echo "Minifying integrity.js for inlining..."
-  CONFIG=$1
-  bin/minify-payload.sh "$2"
+  CONFIG=${1-}
+  bin/minify-payload.sh "${2-}"
 
   cd docs
-  echo "Building site $CONFIG ..."
-  bundle exec jekyll build -q --config _config.yml,$CONFIG
+  echo "Building site ${CONFIG:-_config.yml} ..."
+  bundle exec jekyll build -q --config "_config.yml${CONFIG:+,${CONFIG}}"
   cd ..
 }
 
 echo "Building standard site scaffold..."
-if [ "$1" = "--dev" ]; then
-  _build _config_dev.yml $1
+if [ "${1-}" = "--dev" ]; then
+  _build _config_dev.yml "$1"
 else
   _build
 fi
