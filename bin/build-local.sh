@@ -10,7 +10,11 @@ function _build {
 }
 
 echo "Building standard site scaffold..."
-_build _config_dev.yml
+if [ "$1" = "--dev" ]; then
+  _build _config_dev.yml $1
+else
+  _build
+fi
 
 echo "Building QR site scaffold..."
 _build _config_qr.yml --qr

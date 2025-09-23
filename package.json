@@ -1,7 +1,6 @@
 {
   "scripts": {
-    "prebuild": "bin/minify-crypto.sh && bin/sign-manifest.js",
-    "localbuild": "bin/build-local.sh",
+    "localbuild": "bin/build-local.sh --dev",
     "dev": "cd docs && bundle exec jekyll serve --config _config.yml,_config_dev.yml"
   },
   "dependencies": {
@@ -9,7 +8,6 @@
     "cbor-x": "^1.6.0",
     "pako": "^2.1.0",
     "qrcode": "^1.5.4",
-    "terser": "^5.44.0",
-    "z85": "^0.0.2"
+    "terser": "^5.44.0"
   }
 }
