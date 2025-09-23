@@ -30,7 +30,7 @@
     );
 
     const manifestBytes = new TextEncoder().encode(manifestText);
-    const sigBytes = Uint8Array.from(atob(signature.trim()), c => c.charCodeAt(0));
+    const sigBytes = Uint8Array.from(atob(signature), c => c.charCodeAt(0));
     return (await crypto.subtle.verify(
       {name:'RSA-PSS', saltLength: 32},
       pub, sigBytes, manifestBytes
