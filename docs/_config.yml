@@ -1,3 +1,4 @@
+canonical: https://anecdote.discoverywritten.com
+destination: _site
 include:
   - ".well-known"
-canonical: https://anecdote.discoverywritten.com
