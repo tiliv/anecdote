@@ -15,8 +15,6 @@ To see good changes on the dev server:
 
 Side effect file changes should be committed, because the build pipeline is not concerning itself with these steps.
 
-Signing the manifest rotates the signature even if no changes were made, so don't make the signature flywheel by auto-running the signer without a known diff to it.
-
 ### Commands
 
 These local-only commands help by including the `_config_dev.yml` extension to canonicalize `127.0.0.1:4000` as the host for CSP adherence.
