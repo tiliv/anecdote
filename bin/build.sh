@@ -37,4 +37,4 @@ echo "Building Aztec..."
 bin/make-permatank.mjs
 
 echo "Building QR..."
-bin/make-qr.sh
+bin/make-qr.mjs
