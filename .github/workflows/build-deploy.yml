@@ -38,6 +38,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v5
       - uses: actions/configure-pages@v5
+      - run: npm install
       - run: bin/build.sh
       - run: bin/sign-manifest.js
         env:
