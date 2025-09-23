@@ -10,6 +10,8 @@ This repository is being architected to meet several local need layers.
 
 Please Stand By.
 
+![fundamental incognito](./docs/qr.png)
+
 ## Dev
 
 To see good changes on the dev server, you must pre-build some files into the live `docs/` tree:
