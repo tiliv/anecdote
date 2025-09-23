@@ -2,6 +2,12 @@
 
 This repository is being architected to meet several local need layers.
 
+1. The distribution of a long-lived QR+Aztec code that can load its signed resources with a public key.
+2. The spawnability of a mobile LLM capable of label-reducing text in an assistive capacity, without a network.
+3. The fundamental privacy of queries formed.
+4. The availability of public workflows that model our local communities' documentation habits and the array of TTLs.
+5. The proliferation of live passive polling of the public with implicit moderation and public transparency.
+
 Please Stand By.
 
 ## Dev
