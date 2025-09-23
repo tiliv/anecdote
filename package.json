@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "localbuild": "bin/build-local.sh --dev",
+    "localbuild": "bin/build.sh --dev",
     "dev": "cd docs && bundle exec jekyll serve --config _config.yml,_config_dev.yml"
   },
   "dependencies": {
