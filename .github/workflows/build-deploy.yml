@@ -35,8 +35,10 @@ jobs:
     runs-on: ubuntu-latest
     container: ghcr.io/actions/jekyll-build-pages:latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
+        with:
+          cache: npm
       - uses: actions/configure-pages@v5
       - run: npm ci
       - run: bin/build.sh
