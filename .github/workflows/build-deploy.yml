@@ -37,8 +37,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v5
       - uses: actions/configure-pages@v5
-      - name: bin/build.sh
-        run: bash -euxo pipefail bin/build.sh
+      - run: bin/build.sh
       - uses: actions/upload-pages-artifact@v3
 
   # Deployment job
