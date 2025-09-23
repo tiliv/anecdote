@@ -31,7 +31,7 @@ else
 fi
 
 echo "Encoding index.html..."
-gzip -9 -c docs/_site_qr/index.html > docs/_includes/index.qr.bin
+bin/make-bytes.sh
 
 echo "Building Aztec..."
 bin/make-permatank.mjs
