@@ -6,8 +6,6 @@ Please Stand By.
 
 ## Dev
 
-CI/CD has no build steps and expects our local build to be committed for now.
-
 To see good changes on the dev server:
 
 1. Use `$ bin/build-local.sh` after changes to `docs/index.html`, `docs/_data/payload.js`, `docs/.well-known/manifest.json`. These files represent the foundation and probably shouldn't be changing once they settle.
