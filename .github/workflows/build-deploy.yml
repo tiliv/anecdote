@@ -45,6 +45,8 @@ jobs:
       - run: bin/sign-manifest.js
         env:
           PRIVATE_PEM: ${{ secrets.PRIVATE_PEM }}
+      - name: jekyll build
+        run: JEKYLL_ENV=production bundle exec jekyll build --config _config.yml
       - uses: actions/upload-pages-artifact@v3
         with:
           path: docs/_site
