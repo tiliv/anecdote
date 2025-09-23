@@ -29,8 +29,9 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # Build job
   build:
+    environment:
+      name: github-pages
     runs-on: ubuntu-latest
     container: ghcr.io/actions/jekyll-build-pages:latest
     steps:
@@ -38,9 +39,11 @@ jobs:
       - uses: actions/setup-node@v5
       - uses: actions/configure-pages@v5
       - run: bin/build.sh
+      - run: bin/sign-manifest.js
+        env:
+          PRIVATE_PEM: ${{ secrets.PRIVATE_PEM }}
       - uses: actions/upload-pages-artifact@v3
 
-  # Deployment job
   deploy:
     environment:
       name: github-pages

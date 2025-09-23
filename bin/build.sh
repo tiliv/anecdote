@@ -23,8 +23,12 @@ fi
 echo "Building QR site scaffold..."
 _build _config_qr.yml --qr
 
-echo "Signing manifest..."
-bin/sign-manifest.js
+if [ "${PRIVATE_PEM-}" ] || [ -f local/private.pem ]; then
+  echo "Signing manifest..."
+  bin/sign-manifest.js
+else
+  echo "! Skipping manifest signing, no private key available"
+fi
 
 echo "Encoding index.html..."
 gzip -9 -c docs/_site_qr/index.html > docs/_includes/index.qr.bin

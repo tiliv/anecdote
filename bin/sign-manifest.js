@@ -3,10 +3,8 @@
 const fs = require('fs');
 const crypto = require('crypto');
 
-const private = process.argv[2] || "local/private.pem";
+const privPem = process.env.PRIVATE_PEM || fs.readFileSync("local/private.pem");
 const manifest = fs.readFileSync(`docs/_site/.well-known/manifest.json`);
-console.log(`Signing manifest with ${private} ...`);
-const privPem = fs.readFileSync(private);
 
 const sign = crypto.createSign('sha256');
 sign.update(manifest);
