@@ -26,8 +26,3 @@ sed -i.bak "s@{% include public\.b64 %}@$(<"$PEM")@" "$TARGET" && rm "$TARGET.ba
 # but it could be done.
 echo "Replacing {{ site.canonical }} with manifest provider: ${URL:-<self>}"
 sed -i.bak "s@{{ site\.canonical }}@$URL@g" "$TARGET" && rm "$TARGET.bak"
-
-# Write
-echo "$(<"$TARGET")"
-openssl dgst -sha256 -binary "$TARGET" | openssl base64 -A > "$BASE64"
-echo "$(<"$BASE64")"
