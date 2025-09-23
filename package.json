@@ -6,7 +6,6 @@
   "dependencies": {
     "bwip-js": "^4.7.0",
     "cbor-x": "^1.6.0",
-    "pako": "^2.1.0",
     "qrcode": "^1.5.4",
     "terser": "^5.44.0"
   }

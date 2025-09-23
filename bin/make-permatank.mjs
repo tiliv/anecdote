@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 // make-aztec-bundle.mjs
-import { deflateRaw } from 'pako';
+// import { deflateRaw } from 'pako';
 import { encode as cborEncode, decode as cborDecode } from 'cbor-x';
 import crypto from 'node:crypto';
 import fss from 'node:fs';
