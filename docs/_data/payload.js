@@ -30,6 +30,7 @@
         const [kind, attr] = types[type] || types['*'];
         const el = document.createElement(kind);
         switch (type) {
+          case 'application/javascript': el.type = 'module'; break;
           case 'text/css': el.rel = 'stylesheet'; break;
           // case 'application/manifest+json': _manifest(url); break;
           default: break;
