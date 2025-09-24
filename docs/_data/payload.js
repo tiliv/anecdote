@@ -8,12 +8,12 @@
     const text = await response.text();
     const obj = JSON.parse(text);
     await manifest(obj);
-    async function manifest({ candidates, candidate_order, resources, resource_order }) {
+    async function manifest({ node, candidates, candidate_order, resources, resource_order }) {
       async function resource({ strategy, uri, path, type }){
         async function fill() {
           switch (strategy) {
             case 'dns':
-              const resource = await _fetch(uri);
+              const resource = await _fetch(node + uri);
               return new Blob([await resource.arrayBuffer()], { type });
           }
         }

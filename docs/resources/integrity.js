@@ -2,6 +2,7 @@
 ---
 (async function(){
   console.group("integrity.js");
+  if (!crypto.subtle) return;
 
   const PUBLIC_KEY = document.querySelector('meta[name=public-key-fingerprint]').content;
   console.log({ PUBLIC_KEY });
