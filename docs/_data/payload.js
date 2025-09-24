@@ -8,7 +8,11 @@
     const text = await response.text();
     const obj = JSON.parse(text);
     await manifest(obj);
-    async function manifest({ node, candidates, candidate_order, resources, resource_order }) {
+    async function manifest({
+      meta: { node },
+      candidates={}, candidate_order=[],
+      resources={}, resource_order=[]
+    }) {
       async function resource({ strategy, uri, path, type }){
         async function fill() {
           switch (strategy) {
