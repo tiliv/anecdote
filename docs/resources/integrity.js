@@ -34,7 +34,7 @@
     return (await crypto.subtle?.verify(
       {name:'RSA-PSS', saltLength: 32},
       pub, sigBytes, manifestBytes
-    ) ? manifestText : manifestText.replace(/^\{\n/, '{\n  "verification": "failed"\n'));
+    ) ? manifestText : manifestText.replace(/^\{\n/, '{\n  "verification": "failed",\n'));
   }
 
   const MANIFEST = document.getElementById('manifest');
