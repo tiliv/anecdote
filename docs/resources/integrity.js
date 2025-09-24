@@ -24,7 +24,7 @@
     const buf = new Uint8Array(len);
     for(let i=0;i<len;i++) buf[i]=bin.charCodeAt(i);
     const spki = buf.buffer;
-    const pub = await crypto.subtle.importKey(
+    const pub = await crypto.subtle?.importKey(
       'spki', spki,
       { name: 'RSA-PSS', hash: {name:'SHA-256'} },
       false, ['verify']
@@ -32,10 +32,10 @@
 
     const manifestBytes = new TextEncoder().encode(manifestText);
     const sigBytes = Uint8Array.from(atob(signature), c => c.charCodeAt(0));
-    return (await crypto.subtle.verify(
+    return (await crypto.subtle?.verify(
       {name:'RSA-PSS', saltLength: 32},
       pub, sigBytes, manifestBytes
-    ) ? manifestText : "Verification failure");
+    ) ? manifestText : manifestText.replace(/^\{\n/, '{\n  "verification": "failed"\n'));
   }
 
   const MANIFEST = document.getElementById('manifest');
