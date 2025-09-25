@@ -1,5 +1,8 @@
+const WORKER = 'application/vnd.anecdote.worker';
+const SCRIPT = 'application/javascript';
+const STYLES = 'text/css';
+
 (async function(){
-  // const RESOURCES = {};
   const _fetch = url => fetch(url, { cache: 'no-store', credentials: 'omit', mode: 'cors' });
   await _manifest('{{ site.remote }}/.well-known/manifest.json');
 
@@ -22,24 +25,30 @@
           }
         }
         const file = new File([await fill()], path, { type });
-        const url = URL.createObjectURL(file);
+        let url = URL.createObjectURL(file);
         const types = {
           '*': ['link', 'href'],
-          'application/javascript': ['script', 'src']
+          [SCRIPT]: ['script', 'src'],
+          [WORKER]: ['script', 'src'],
         };
         const [kind, attr] = types[type] || types['*'];
         const el = document.createElement(kind);
         switch (type) {
-          case 'application/javascript': el.type = 'module'; break;
-          case 'text/css': el.rel = 'stylesheet'; break;
+          case WORKER: URL.revokeObjectURL(url); url = node + uri; // no break
+          case SCRIPT: el.type = 'module'; break;
+          case STYLES: el.rel = 'stylesheet'; break;
           // case 'application/manifest+json': _manifest(url); break;
           default: break;
         }
-
-        el.id = path;
         el[attr] = url;
+        el.id = path;
         document.head.appendChild(el);
-        // RESOURCES[path] = url;
+        switch (type) {
+          case WORKER: navigator.serviceWorker.register(node + uri, {
+            type: 'module', scope: candidates.dns
+          }); break;
+          default: break;
+        }
       }
 
       for (const label of resource_order) {

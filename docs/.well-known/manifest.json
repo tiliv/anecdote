@@ -15,7 +15,7 @@
   },
   "resources": {
     "integrity.js": { "type": "application/javascript" },
-    "medium.js": { "type": "application/javascript" },
+    "medium.js": { "type": "application/vnd.anecdote.worker" },
     "style.css": { "type": "text/css" }
   }
 }
