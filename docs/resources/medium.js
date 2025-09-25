@@ -22,12 +22,12 @@ const API = (async () => {
   };
 
   async function migrate() {
-    return await new Promise((res, rej) => {
+    return await new Promise((y, n) => {
       db.onupgradeneeded = () => db.result
         .createObjectStore(STORE, { keyPath: 'name' })
         .createIndex(BY_PREFIX, 'name', { unique: true });
-      db.onerror = () => rej(db.error);
-      db.onsuccess = () => res(db.result);
+      db.onerror = () => n(db.error);
+      db.onsuccess = () => y(db.result);
     })
   }
 
