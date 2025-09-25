@@ -9,13 +9,16 @@
     "notes": "Please Stand By."
   },
   "candidate_order": ["dns"],
-  "resource_order": ["integrity.js", "medium.js", "style.css"],
+  "resource_order": [
+    "integrity.js", "medium.js", "assistant.json", "style.css"
+  ],
   "candidates": {
     "dns": "/resources/"
   },
   "resources": {
     "integrity.js": { "type": "application/javascript" },
     "medium.js": { "type": "application/vnd.anecdote.worker" },
+    "assistant.json": { "type": "application/manifest+json" },
     "style.css": { "type": "text/css" }
   }
 }
