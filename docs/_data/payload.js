@@ -19,7 +19,7 @@ const STYLES = 'text/css';
     }) {
       const workers = { type: 'module', scope: candidates.dns };
       const after = {
-        [WORKER]: ({ uri }) => navigator.serviceWorker.register(node + uri, workers),
+        [WORKER]: ({ uri }) => navigator.serviceWorker?.register?.(node + uri, workers),
         [BUNDLE]: async ({ file }) => manifest(JSON.parse(await file.text())),
       };
 
