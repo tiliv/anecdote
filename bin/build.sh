@@ -3,7 +3,7 @@
 set -Eeuo pipefail
 
 _build() {
-  echo "Minifying integrity.js for inlining..."
+  echo "Minifying docs/_data/payload.js for inlining..."
   CONFIG=${1-}
   bin/minify-payload.sh "${2-}"
 
