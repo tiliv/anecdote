@@ -23,6 +23,12 @@ layout: null
   form-action 'none';
   object-src 'none';">
 <meta id="manifest" content="">
+<script type="importmap" nonce="imports">
+{ "imports": { {% for kv in site.data.node_modules -%}
+    "{{ kv[0] }}": "{{ site.remote }}{{ kv[1] | first | last -}}"
+    {%- if forloop.last == false %}, {% endif -%}
+{%- endfor %} } }
+</script>
 <script>{% if site.qr %}{% include payload.qr.min.js %}{% else %}{% include payload.min.js %}{% endif %}</script>
 <title>Anecdote</title>
 </head>
