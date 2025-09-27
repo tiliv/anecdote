@@ -13,6 +13,9 @@ _build() {
   cd ..
 }
 
+echo "Copying resource node_modules..."
+bin/copy-vendors.sh
+
 echo "Building standard site scaffold..."
 if [ "${1-}" = "--dev" ]; then
   _build _config_dev.yml "$1"

@@ -13,7 +13,7 @@
     "integrity.js", "medium.js", "assistant.json", "style.css"
   ],
   "candidates": {
-    "dns": "/resources/"
+    "dns": "{{ site.data.candidates.dns }}"
   },
   "resources": {
     "integrity.js": { "type": "application/javascript" },

@@ -11,19 +11,20 @@
   "candidate_order": ["medium.js"],
   "resource_order": ["assistant.js"],
   "candidates": {
-    "medium.js": "/▒/"
+    "dns": "{{ site.data.candidates.dns }}"
+  },
+  "resources": {
+    "assistant.html": { "type": "application/manifest+html" },
+    "assistant.js": { "type": "module" }
   },
   "tasks": {
     "MNLI": {
-      "Xenova/mobilebert-uncased-mnli":{{ noop -}}
+      "Xenova/mobilebert-uncased-mnli": {{ noop -}}
       { "pipeline": "zeroshot-classification", "multi_label": [true, false] }
     },
     "QNLI": {
-      "Alireza1044/mobilebert_QNLI":{{ noop -}}
+      "Alireza1044/mobilebert_QNLI": {{ noop -}}
       { "pipeline": "text-classification" }
     }
-  },
-  "resources": {
-    "assistant.js": { "type": "application/javascript" }
   }
 }
