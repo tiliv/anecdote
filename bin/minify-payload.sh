@@ -13,7 +13,6 @@ else
 fi
 
 B64=docs/_includes/$NAME.b64
-URI_ENCODED=docs/_includes/$NAME.url
 
 # Minify
 if [ "$1" = "--qr" ]; then
@@ -35,5 +34,3 @@ echo "Replacing {{ site.remote }} with manifest provider: ${URL:-<self>}"
 sed -i.bak "s@{{ site\.remote }}@$URL@g" "$TARGET" && rm "$TARGET.bak"
 
 openssl dgst -sha256 -binary "$TARGET" | openssl base64 -A > "$B64"
-
-bin/encode-payload.js > "$URI_ENCODED"
