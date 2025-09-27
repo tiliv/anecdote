@@ -58,7 +58,7 @@ code {
 body::before {
   content: "";
   position: fixed;
-  inset: 1rem;
+  inset: 3rem;
   background-color: var(--shade);
   box-shadow: 0 0 .5rem var(--border);
   z-index: -1;
