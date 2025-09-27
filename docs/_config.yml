@@ -1,6 +1,7 @@
 canonical: https://anecdote.discoverywritten.com
 destination: _site
 include:
-  - ".well-known"
+  - .well-known
+  - .url
 exclude:
- - "_site_qr"
+ - _site_qr

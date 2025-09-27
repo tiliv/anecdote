@@ -42,6 +42,6 @@ bin/make-permatank.mjs
 echo "Building QR..."
 bin/make-qr.mjs
 
-URI_ENCODED=docs/_includes/index.qr.url
+URI_ENCODED=docs/.url
 echo "Building data:chamber '$URI_ENCODED'..."
 bin/make-datachamber.js > "$URI_ENCODED"
