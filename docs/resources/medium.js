@@ -12,7 +12,7 @@ const BY_PREFIX = 'byPrefix';
 };
 
 const API = (async () => {
-  const db = await indexedDB.open(NAME, 1);
+  const db = await indexedDB?.open(NAME, 1);
   const init = migrate();
 
   return {

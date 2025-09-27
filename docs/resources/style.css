@@ -44,12 +44,12 @@ body {
   width: max-content;
   padding: 1rem;
   margin: auto;
-  /* color: var(--fg2); */
-  /* }
-  code { */
+  color: var(--fg2);
+}
+code {
   white-space: pre;
   font-weight: bolder;
-  font-size: 2em;
+  font-size: 1.5em;
   font-family: "Courier New", Courier, monospace;
   color: var(--fg2);
   mix-blend-mode: overlay;
@@ -63,4 +63,19 @@ body::before {
   box-shadow: 0 0 .5rem var(--border);
   z-index: -1;
   pointer-events: none;
+}
+
+iframe[id] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  left: -100vw;
+  top: -100vh;
+  pointer-events: none;
+  opacity: 0;
+  user-select: none;
+  overflow: hidden;
+  border: none;
+  margin: 0;
+  padding: 0;
 }

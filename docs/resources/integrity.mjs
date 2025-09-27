@@ -1,10 +1,9 @@
 ---
 ---
-(async function(){
-  console.group("integrity.js");
 
+(async function(){
   const PUBLIC_KEY = document.querySelector('meta[name=public-key-fingerprint]').content;
-  console.log({ PUBLIC_KEY });
+  console.log("Public key fingerprint:", PUBLIC_KEY);
 
   async function fetchTextNoCache(url){
     const r = await fetch(url, {cache: 'no-store', credentials: 'omit', mode: 'cors'});
@@ -14,10 +13,11 @@
 
   async function verifyManifest(){
     const [manifestText, signature] = await Promise.all([
+      // During QR, these files are requested from the remote, so it must be
+      // fully qualified. The QR instance never builds its own one of these.
       fetchTextNoCache('{{ site.canonical }}/.well-known/manifest.json'),
       fetchTextNoCache('{{ site.canonical }}/.well-known/manifest.sig')
     ]);
-    console.log({ signature });
     const bin = atob(PUBLIC_KEY);
     const len = bin.length;
     const buf = new Uint8Array(len);
@@ -37,7 +37,9 @@
     ) ? manifestText : manifestText.replace(/^\{\n/, '{\n  "verification": "failed",\n'));
   }
 
-  const MANIFEST = document.getElementById('manifest');
-  MANIFEST.content = document.body.textContent = await verifyManifest();
-  console.groupEnd();
+  const manifest = await verifyManifest();
+  document.getElementById('manifest.json').content = manifest;
+  const el = document.createElement('code');
+  el.textContent = manifest;
+  document.body.prepend(el);
 })();

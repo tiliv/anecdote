@@ -32,12 +32,15 @@ class Assistant {
   };
 }
 
-self.addEventListener('message', async (event) => {
-  const { assistant } = event.data || {};
+self.addEventListener('message', async ({ data: { assistant }={} }) => {
   if (!assistant) return;
+
   const { warmUp, ...task } = assistant;
   const A = Assistant.use();
-  if (warmUp) return;
+  if (warmUp) {
+    reply({ warmUp: A.meta });
+    return;
+  }
   const { name, version, prompt, ...input } = task;
   const reply = out => self.postMessage({
     status: 'analyzed',

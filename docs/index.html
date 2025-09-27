@@ -10,18 +10,10 @@ layout: null
 <meta charset="utf-8">
 <meta name="public-key-fingerprint" content="{% include public.b64 %}">
 <meta name="public-key-url" content="{{ site.remote }}/public.pem">
-<meta http-equiv="Content-Security-Policy" content="
-  default-src 'self';
-  connect-src 'self' blob: {{- site.remote -}};
-  script-src 'self' blob: 'sha256-{{ integrity }}' {{- site.remote -}};
-  style-src 'self' blob:;
-  worker-src 'self';
-  img-src 'self';
-  media-src 'self';
-  font-src 'self';
-  base-uri 'none';
-  form-action 'none';
-  object-src 'none';">
+<meta http-equiv="Content-Security-Policy" content="{{ noop -}}
+  default-src 'self' blob: {{ site.remote }}; {{ noop -}}
+  script-src 'self' blob: {{ site.remote }} 'sha256-{{ integrity -}}' 'nonce-imports';{{ noop -}}
+">
 <meta id="manifest" content="">
 <script type="importmap" nonce="imports">
 { "imports": { {% for kv in site.data.node_modules -%}
