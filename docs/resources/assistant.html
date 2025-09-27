@@ -1,0 +1,13 @@
+---
+layout: widget
+title: Assistant
+for: assistant.json
+Content-Security-Policy: >
+  default-src 'none';
+  script-src 'self';
+  style-src 'self';
+imports:
+  - "@xenova/transformers"
+---
+<h2>{{ page.title }}</h2>
+<slot></slot>

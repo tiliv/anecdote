@@ -13,6 +13,7 @@
   },
   "resources": {
     "integrity.mjs":  { "type": "module" },
+    "manifest.html":  { "type": "application/manifest+html" },
     "medium.js":      { "type": "application/vnd.anecdote.worker" },
     "assistant.json": { "type": "application/manifest+json" },
     "style.css":      { "type": "text/css" }

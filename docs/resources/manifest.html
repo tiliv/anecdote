@@ -1,0 +1,11 @@
+---
+layout: widget
+title: Manifest
+for: manifest.json
+Content-Security-Policy: >
+  default-src 'none';
+  script-src 'self';
+  style-src 'self';
+---
+<h2>{{ page.title }}</h2>
+<slot></slot>

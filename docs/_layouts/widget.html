@@ -1,0 +1,13 @@
+---
+---
+<!doctype html>
+<title>{{ page.title }}</title>
+<meta charset="utf-8">
+<meta name="for" content="{{ page.for }}">
+<meta http-equiv="Content-Security-Policy" content="{{- page['Content-Security-Policy'] -}}">
+
+<template id="{{ page.title }}">
+{{ content }}
+</template>
+
+<script type="module" src="{{ site.canonical }}{{ site.data.candidates.dns }}widget.js"></script>
