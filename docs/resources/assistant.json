@@ -8,8 +8,6 @@
     "node": "{{ site.canonical }}",
     "notes": "Please Stand By."
   },
-  "candidate_order": ["medium.js"],
-  "resource_order": ["assistant.js"],
   "candidates": {
     "dns": "{{ site.data.candidates.dns }}"
   },
