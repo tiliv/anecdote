@@ -14,7 +14,7 @@ layout: null
   default-src 'self' blob: {{ site.remote }}; {{ noop -}}
   script-src 'self' blob: {{ site.remote }} 'sha256-{{ integrity -}}' 'nonce-imports';{{ noop -}}
 ">
-<meta id="manifest" content="">
+<meta id="manifest.json" content="">
 <script type="importmap" nonce="imports">
 { "imports": { {% for kv in site.data.node_modules -%}
     "{{ kv[0] }}": "{{ site.remote }}{{ kv[1] | first | last -}}"
