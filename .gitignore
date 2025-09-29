@@ -1,5 +1,6 @@
 /local
 docs/.well-known/appspecific/com.chrome.devtools.json
+docs/public.pem
 docs/_site
 docs/_site_qr
 node_modules

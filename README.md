@@ -23,6 +23,18 @@ Please Stand By.
 
 ## Dev
 
+### Setup
+
+For your first set up, please run `bin/make-key.sh` to generate required files:
+- `docs/public.pem`
+- `local/private.pem`
+
+You should not commit these, but they are required for your platform to produce a valid manifest signature.
+
+During this early stage of development, a wrong manifest signature is not fatal to the runtime, but the javascript will deliberately further invalidate your manifest signature by prepending a failed verification JSON key. As sources and sub-manifests become signed in the distribution, we will close the failed-verification pathway.
+
+### Dev server
+
 To see good changes on the dev server, you must pre-build some files into the live `docs/` tree:
 
 1. Use `$ npm run localbuild` after changes to `docs/index.html`, `docs/_data/payload.js`, `docs/.well-known/manifest.json`. These files represent the foundation and probably shouldn't be changing once they settle.
